@@ -1,4 +1,4 @@
-# MNIST handwritten digits recognition on IceStick FPGA
+# Binary Neural Network on IceStick FPGA
 
 ## Introduction
 This project is from Magma Hackathon by Yujun Lin, Kaidi Cao and Song Han
