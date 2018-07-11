@@ -22,6 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 """
 from magma import *
+set_mantle_target("ice40")
 import mantle
 import math
 import pickle
@@ -112,7 +113,7 @@ class TestReadRom(Circuit):
     @classmethod
     def definition(io):
         weights_list = [1] + [2**16-1]*15 + [3] + [2**16-1]*15 + ([0] + [2**16-1]*15)*((256-32)//16)
-        weigths_rom = ROMB(weights_list)
+        weigths_rom = ROMB(len(weights_list), 16, weights_list)
         lut_list = []
         for i in range(N):
             lut_list.append(SB_LUT4(LUT_INIT=1))
@@ -136,7 +137,7 @@ class ReadRom(Circuit):
           'WEIGHT', Out(Bits(N)), 'IMAGE', Out(Bits(N))]
     @classmethod
     def definition(io):
-        weigths_rom = ROMB(weights_list)
+        weigths_rom = ROMB(len(weights_list), 16, weights_list)
         # using 16 LUTs to store the image, each LUT contributes 1 bit per cycle
         lut_list = []
         for i in range(N):
